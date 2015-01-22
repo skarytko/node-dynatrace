@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "description": "Dynatrace API client library for Node.js",
   "main": "dynatrace.js",
-  "scripts": {
-    "lint": "",
-    "test": "",
-    "generate-docs": ""
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/skarytko/node-dynatrace.git"
