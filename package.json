@@ -1,0 +1,40 @@
+{
+  "name": "dynatrace",
+  "version": "0.1.0",
+  "description": "Dynatrace API client library for Node.js",
+  "main": "dynatrace.js",
+  "scripts": {
+    "lint": "",
+    "test": "",
+    "generate-docs": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skarytko/node-dynatrace.git"
+  },
+  "keywords": [
+    "dynatrace",
+    "api",
+    "api",
+    "client",
+    "synthetic"
+  ],
+  "author": "Stefan Karytko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skarytko/node-dynatrace/issues"
+  },
+  "dependencies": {
+    "request": "~2.51.0",
+    "underscore": "^1.7.0",
+    "xml2js": "^0.4.4"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-env": "^0.4.2",
+    "grunt-jsdoc": "^0.5.7",
+    "grunt-mocha-test": "^0.12.6",
+    "mocha": "^2.1.0"
+  }
+}
