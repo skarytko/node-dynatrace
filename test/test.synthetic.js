@@ -1,5 +1,3 @@
-'use strict';
-
 var assert = require('assert');
 var Dynatrace = require('../dynatrace');
 
@@ -8,13 +6,6 @@ describe('Synthetic', function() {
 	var synthetic = new Dynatrace.Synthetic({
 		username: process.env.DYNATRACE_USERNAME,
 		password: process.env.DYNATRACE_PASSWORD
-	});
-	/*
-	it('should...', function() {
-		
-		assert.equal(typeof synthetic.testsList, 'function');
-		assert.equal(typeof synthetic.scriptsList, 'function');
-		
 	});
 
 	describe('tests', function() {
@@ -46,16 +37,12 @@ describe('Synthetic', function() {
 		});
 		
 	});
-*/
+
 	describe('data', function() {
 		
-		it('should have function to retrieve data', function(done) {
-			
-			assert.equal(typeof synthetic.data, 'function');
-			
-		});
-		
 		it('should return results data object', function(done) {
+			this.timeout(8000);
+			
 			var params = { 
 				iMonitorIdSet: ['18317263'],
 				sMonitorClassDesignator: 'BROWSERTX',
