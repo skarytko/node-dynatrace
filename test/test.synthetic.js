@@ -7,12 +7,23 @@ describe('Synthetic', function() {
 		username: process.env.DYNATRACE_USERNAME,
 		password: process.env.DYNATRACE_PASSWORD
 	});
-
-	describe('authenticate', function() {
+	
+	describe('account', function() {
 		
 		it('should return an object confirming authentication', function(done) {
 			
 			synthetic.authenticate(function(err, result, res) {
+				if (err) throw err;
+				
+				assert.equal(typeof result, 'object');
+				done();
+			});
+			
+		});
+		
+		it('should return an object with account summary information', function(done) {
+			
+			synthetic.accountShow(function(err, result, res) {
 				if (err) throw err;
 				
 				assert.equal(typeof result, 'object');
