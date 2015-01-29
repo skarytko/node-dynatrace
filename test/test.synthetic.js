@@ -8,7 +8,23 @@ describe('Synthetic', function() {
 		password: process.env.DYNATRACE_PASSWORD
 	});
 
+	describe('authenticate', function() {
+		
+		it('should return an object confirming authentication', function(done) {
+			
+			synthetic.authenticate(function(err, result, res) {
+				if (err) throw err;
+				
+				assert.equal(typeof result, 'object');
+				done();
+			});
+			
+		});
+		
+	});
+
 	describe('tests', function() {
+		this.timeout(8000);
 		
 		it('should return an array of tests', function(done) {
 			
@@ -25,7 +41,8 @@ describe('Synthetic', function() {
 
 	describe('scripts', function() {
 		
-		it('should return a list of tests', function(done) {
+		it('should return a list of scripts', function(done) {
+			this.timeout(8000);
 			
 			synthetic.scriptsList({}, function(err, body, res) {
 				if (err) throw err;
@@ -37,7 +54,29 @@ describe('Synthetic', function() {
 		});
 		
 	});
+	
+	describe('alerts', function() {
+		
+		it('should return a list of alerts', function(done) {
+			
+			var params = {
+				monitorType: 'ALL',
+				startTime: '2013-01-22 00:00:00',
+				endTime: '2013-01-23 00:00:00'
+			};
+			
+			synthetic.alertsList(params, function(err, body, res) {
+				if (err) throw err;
 
+				assert.equal(typeof body, 'object');
+				done();
+			});
+			
+		});
+		
+	});
+	
+/*
 	describe('data', function() {
 		
 		it('should return results data object', function(done) {
@@ -62,5 +101,5 @@ describe('Synthetic', function() {
 		});
 		
 	});
-
+*/
 });
