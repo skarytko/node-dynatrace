@@ -1,6 +1,6 @@
 {
   "name": "dynatrace",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Dynatrace API client library for Node.js",
   "main": "dynatrace.js",
   "scripts": {},
@@ -21,6 +21,7 @@
     "url": "https://github.com/skarytko/node-dynatrace/issues"
   },
   "dependencies": {
+    "async": "^0.9.0",
     "request": "~2.51.0",
     "underscore": "^1.7.0",
     "xml2js": "^0.4.4"

@@ -23,7 +23,7 @@ describe('Synthetic', function() {
 		
 		it('should return an object with account summary information', function(done) {
 			
-			synthetic.accountShow(function(err, result, res) {
+			synthetic.accountsShow(function(err, result, res) {
 				if (err) throw err;
 				
 				assert.equal(typeof result, 'object');
@@ -33,6 +33,22 @@ describe('Synthetic', function() {
 		});
 		
 	});
+	
+	describe('locations', function() {
+		
+		it('should return an array of backbone nodes', function(done) {
+			
+			synthetic.nodesList(function(err, result, res) {
+				if (err) throw err;
+				console.log(JSON.stringify(result));
+				assert.equal(typeof result, 'object');
+				done();
+			});
+			
+		});
+		
+	});
+	
 
 	describe('tests', function() {
 		this.timeout(8000);
@@ -65,7 +81,7 @@ describe('Synthetic', function() {
 		});
 		
 	});
-	
+	/*
 	describe('alerts', function() {
 		
 		it('should return a list of alerts', function(done) {
@@ -86,8 +102,7 @@ describe('Synthetic', function() {
 		});
 		
 	});
-	
-/*
+	*/
 	describe('data', function() {
 		
 		it('should return results data object', function(done) {
@@ -96,7 +111,7 @@ describe('Synthetic', function() {
 			var params = { 
 				iMonitorIdSet: ['18317263'],
 				sMonitorClassDesignator: 'BROWSERTX',
-				sDataDesignator: 'PAGE',
+				sDataDesignator: 'SUMMARY',
 				sOrderDesignator: 'TIME',
 				sStartTime: '2015-01-20 00:00:00', 
 				sEndTime: '2015-01-20 12:00:00'
@@ -104,7 +119,7 @@ describe('Synthetic', function() {
 			
 			synthetic.data(params, function(err, body, res) {
 				if (err) throw err;
-
+				
 				assert.equal(typeof body, 'object');
 				done();
 			});
@@ -112,5 +127,5 @@ describe('Synthetic', function() {
 		});
 		
 	});
-*/
+
 });
