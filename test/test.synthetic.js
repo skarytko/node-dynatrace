@@ -40,7 +40,7 @@ describe('Synthetic', function() {
 			
 			synthetic.nodesList(function(err, result, res) {
 				if (err) throw err;
-				console.log(JSON.stringify(result));
+				
 				assert.equal(typeof result, 'object');
 				done();
 			});
@@ -81,15 +81,13 @@ describe('Synthetic', function() {
 		});
 		
 	});
-	/*
+	
 	describe('alerts', function() {
 		
 		it('should return a list of alerts', function(done) {
 			
 			var params = {
-				monitorType: 'ALL',
-				startTime: '2013-01-22 00:00:00',
-				endTime: '2013-01-23 00:00:00'
+				endTime: new Date()
 			};
 			
 			synthetic.alertsList(params, function(err, body, res) {
@@ -102,20 +100,18 @@ describe('Synthetic', function() {
 		});
 		
 	});
-	*/
+	
 	describe('data', function() {
 		
 		it('should return results data object', function(done) {
 			this.timeout(8000);
 			
-			var params = { 
-				iMonitorIdSet: ['18317263'],
-				sMonitorClassDesignator: 'BROWSERTX',
-				sDataDesignator: 'SUMMARY',
-				sOrderDesignator: 'TIME',
-				sStartTime: '2015-01-20 00:00:00', 
-				sEndTime: '2015-01-20 12:00:00'
-			};
+			var params = { iMonitorIdSet: [ '18408588', '18530476' ],
+  sMonitorClassDesignator: 'BROWSERTX',
+  sDataDesignator: 'SUMMARY',
+  sOrderDesignator: 'TIME',
+  sStartTime: '2015-02-03T00:26:49.909Z',
+  sEndTime: '2015-02-03T00:31:49.910Z' };
 			
 			synthetic.data(params, function(err, body, res) {
 				if (err) throw err;
