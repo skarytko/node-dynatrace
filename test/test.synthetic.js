@@ -80,6 +80,19 @@ describe('Synthetic', function() {
 			
 		});
 		
+		it('should download a script', function(done) {
+			
+			var scriptId = 10759004;
+			
+			synthetic.scriptsDownload({ iMonitorId: 10759004 }, function(err, body, res) {
+				if (err) throw err;
+				
+				assert.equal(typeof body, 'object');
+				done();
+			});
+			
+		})
+		
 	});
 	
 	describe('alerts', function() {
