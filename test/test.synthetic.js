@@ -91,7 +91,19 @@ describe('Synthetic', function() {
 				done();
 			});
 			
-		})
+		});
+		
+		it('should return status', function(done) {
+			this.timeout(8000);
+			
+			synthetic.scriptsDestroy(20544767, function(err, body, res) {
+				if (err) throw err;
+
+				assert.equal(typeof body, 'object');
+				done();
+			});
+			
+		});
 		
 	});
 	

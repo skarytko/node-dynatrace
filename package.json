@@ -1,6 +1,6 @@
 {
   "name": "dynatrace",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Dynatrace API client library for Node.js",
   "main": "dynatrace.js",
   "scripts": {},
