@@ -57,7 +57,7 @@ describe('Synthetic', function() {
 			
 			synthetic.testsList({}, function(err, tests, res) {
 				if (err) throw err;
-				
+
 				assert.equal(typeof tests, 'object');
 				done();
 			});
