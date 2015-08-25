@@ -1,15 +1,23 @@
 var assert = require('assert');
 var dynatrace = require('../lib/dynatrace');
+var xml2js = require('xml2js');
 
 describe('Synthetic', function() {
 	
-	/*
+	
 	describe('account', function() {
 		
 		it('should return an object confirming authentication', function(done) {
 			
+			var synthetic = new dynatrace.Synthetic({ 
+				username: 'stefan.karytko', 
+				password: 'G@mezps1' 
+			});
+			
 			synthetic.authenticate(function(err, result, res) {
 				if (err) throw err;
+				
+				console.log(result);
 				
 				assert.equal(typeof result, 'object');
 				done();
@@ -29,7 +37,7 @@ describe('Synthetic', function() {
 		});
 		
 	});
-	
+	/*
 	describe('locations', function() {
 		
 		it('should return an array of backbone nodes', function(done) {
