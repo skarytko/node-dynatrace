@@ -1,13 +1,9 @@
 var assert = require('assert');
-var Dynatrace = require('../dynatrace');
+var dynatrace = require('../lib/dynatrace');
 
 describe('Synthetic', function() {
 	
-	var synthetic = new Dynatrace.Synthetic({
-		username: process.env.DYNATRACE_USERNAME,
-		password: process.env.DYNATRACE_PASSWORD
-	});
-	
+	/*
 	describe('account', function() {
 		
 		it('should return an object confirming authentication', function(done) {
@@ -48,24 +44,37 @@ describe('Synthetic', function() {
 		});
 		
 	});
-	
+	*/
 
-	describe('tests', function() {
+	describe('tests', function(done) {
 		this.timeout(8000);
 		
-		it('should return an array of tests', function(done) {
-			
-			synthetic.testsList({}, function(err, tests, res) {
-				if (err) throw err;
+		var synthetic = dynatrace.synthetic({ 
+			username: 'stefan.karytko', 
+			password: 'G@mezps1' 
+		});
+	
+		synthetic.authenticate().then(function() {
 
-				assert.equal(typeof tests, 'object');
-				done();
-			});
-			
+			return synthetic.monitors.list({ status: 'active' });
+
+		}).then(function(result) {
+
+			console.log(result);
+			assert.equal(typeof result, 'object');
+		
+			done();
+
+		}).fail(function(err) {
+
+			console.log(err);
+			throw err;
+
 		});
 		
 	});
 
+/*
 	describe('scripts', function() {
 		
 		it('should return a list of scripts', function(done) {
@@ -125,24 +134,38 @@ describe('Synthetic', function() {
 		});
 		
 	});
-	
+	*/
 	describe('data', function() {
 		
 		it('should return results data object', function(done) {
 			this.timeout(8000);
 			
-			var params = { iMonitorIdSet: [ '18408588', '18530476' ],
-  sMonitorClassDesignator: 'BROWSERTX',
-  sDataDesignator: 'SUMMARY',
-  sOrderDesignator: 'TIME',
-  sStartTime: '2015-02-03T00:26:49.909Z',
-  sEndTime: '2015-02-03T00:31:49.910Z' };
+			var params = {
+				monitorIds: [ '18530476', '23359852', '23451778', '23451780', '23413603', '23413604', '23413605' ],
+				detailLevel: 'test,w3c',
+				start: 1440083778819,
+				end: 1440083825452
+			};
 			
-			synthetic.data(params, function(err, body, res) {
-				if (err) throw err;
-				
-				assert.equal(typeof body, 'object');
+			var synthetic = dynatrace.synthetic({ 
+				username: 'stefan.karytko', 
+				password: 'G@mezps1' 
+			});
+			
+			synthetic.authenticate().then(function() {
+			
+				return synthetic.tests.list(params);
+			
+			}).then(function(result) {
+				console.log(result);
+				assert.equal(typeof result, 'object');
+
 				done();
+
+			}).fail(function(err) {
+				console.log(err);
+				throw err;
+				
 			});
 			
 		});
