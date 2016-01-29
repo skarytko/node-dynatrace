@@ -4,20 +4,17 @@ var xml2js = require('xml2js');
 
 describe('Synthetic', function() {
 	
+	var synthetic = new dynatrace.Synthetic({ 
+		username: 'stefan.karytko', 
+		password: 'G@mezps1' 
+	});
 	
 	describe('account', function() {
 		
 		it('should return an object confirming authentication', function(done) {
 			
-			var synthetic = new dynatrace.Synthetic({ 
-				username: 'stefan.karytko', 
-				password: 'G@mezps1' 
-			});
-			
 			synthetic.authenticate(function(err, result, res) {
 				if (err) throw err;
-				
-				console.log(result);
 				
 				assert.equal(typeof result, 'object');
 				done();
@@ -27,9 +24,9 @@ describe('Synthetic', function() {
 		
 		it('should return an object with account summary information', function(done) {
 			
-			synthetic.accountsShow(function(err, result, res) {
+			synthetic.accountsShowDetails(function(err, result, res) {
 				if (err) throw err;
-				
+
 				assert.equal(typeof result, 'object');
 				done();
 			});
@@ -68,14 +65,12 @@ describe('Synthetic', function() {
 
 		}).then(function(result) {
 
-			console.log(result);
 			assert.equal(typeof result, 'object');
 		
 			done();
 
 		}).fail(function(err) {
 
-			console.log(err);
 			throw err;
 
 		});
@@ -146,13 +141,13 @@ describe('Synthetic', function() {
 	describe('data', function() {
 		
 		it('should return results data object', function(done) {
-			this.timeout(8000);
+			this.timeout(30000);
 			
 			var params = {
-				monitorIds: [ '18530476', '23359852', '23451778', '23451780', '23413603', '23413604', '23413605' ],
-				detailLevel: 'test,w3c',
-				start: 1440083778819,
-				end: 1440083825452
+				monitorIds: [ '18530476' ],
+				detailLevel: 'all',
+				start: new Date().getTime() - (1000 * 60 * 5),
+				end: new Date().getTime()
 			};
 			
 			var synthetic = dynatrace.synthetic({ 
@@ -165,13 +160,13 @@ describe('Synthetic', function() {
 				return synthetic.tests.list(params);
 			
 			}).then(function(result) {
-				console.log(result);
+
 				assert.equal(typeof result, 'object');
 
 				done();
 
 			}).fail(function(err) {
-				console.log(err);
+
 				throw err;
 				
 			});
